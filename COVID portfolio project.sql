@@ -3,9 +3,9 @@ From PortfolioProject..CovidDeaths
 Where continent is not null
 Order by 3,4
 
---Select *
---From PortfolioProject..CovidVaccinations
---Order by 3,4
+/*Select *
+From PortfolioProject..CovidVaccinations
+Order by 3,4*/
 
 -- Shows total cases vs death cases
 Select location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
