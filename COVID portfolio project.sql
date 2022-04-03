@@ -119,3 +119,36 @@ Where dea.continent is not null
 
 Select *
 From PercentPopulationVaccinated
+
+Create View DeathPercentInWholeWorld as
+Select sum(new_cases) as total_cases, sum(cast(total_deaths as int)) as total_deaths, sum(convert(int,New_deaths))/sum(New_cases)*100 as DeathPercentage
+From PortfolioProject..CovidDeaths
+Where continent is not null
+--Order by 1,2
+
+Select * 
+From DeathPercentInWholeWorld
+
+-- Views doesn't appear in object explorer/data base/views FIX
+USE PortfolioProject
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create View HighestDeathCountByContinent as
+Select continent, max(cast(Total_deaths as int)) as TotalDeathCount
+From PortfolioProject..CovidDeaths
+Where continent is not null
+Group by continent
+
+GO
+
+Select *
+From HighestDeathCountByContinent
+
+
+
