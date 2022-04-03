@@ -106,7 +106,7 @@ Select *, (SumPeopleVaccinated/population)*100
 From #PercentPopulationVaccinated
 
 
--- Creating view to store data for later visualization
+-- Creating view to store data for later visualization in Tableau
 Create View PercentPopulationVaccinated as
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, sum(convert(bigint,vac.new_vaccinations)) OVER (Partition by dea.location order by dea.location, dea.date) as SumPeopleVaccinated
 --, (SumPeopleVaccinated)/dea.population) * 100
