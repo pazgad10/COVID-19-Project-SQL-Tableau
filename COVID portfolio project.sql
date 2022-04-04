@@ -60,6 +60,16 @@ Join PortfolioProject..CovidVaccinations vac
 Where dea.continent is not null
 Order by 2,3
 
+-- Looking at rolling deaths in Israel
+SELECT dea.continent, dea.location, dea.date, dea.new_deaths,
+SUM(cast(dea.new_deaths as bigint)) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.date) RollingDeaths
+FROM PortfolioProject..CovidDeaths dea
+JOIN PortfolioProject..CovidVaccinations vac
+	ON dea.location = vac.location
+	and dea.date = vac.date
+WHERE dea.continent is not null
+and dea.location like '%israel%'
+
 -- Use CTE
 
 With PopVsVac (continent, location, date, population, New_vaccinations, SumPeopleVaccinated)
