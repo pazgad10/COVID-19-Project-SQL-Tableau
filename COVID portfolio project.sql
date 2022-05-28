@@ -10,14 +10,14 @@ Order by 3,4
 -- Shows total cases vs death cases
 Select location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
 From PortfolioProject..CovidDeaths
-Where location like '%states%'
+Where location like '%israel%'
 and continent is not null
 Order by 1,2
 
 -- Shows what percentage of population got covid
 Select location, date, total_cases, population, (total_cases/population)*100 as PercentPopulationInfected
 From PortfolioProject..CovidDeaths
-Where location like '%states%'
+Where location like '%israel%'
 and continent is not null
 Order by 1,2
 
